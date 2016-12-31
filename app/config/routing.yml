@@ -1,3 +1,7 @@
+pg_short_url:
+    resource: "@PGShortUrlBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
