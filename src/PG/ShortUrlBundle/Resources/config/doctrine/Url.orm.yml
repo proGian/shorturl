@@ -1,0 +1,32 @@
+PG\ShortUrlBundle\Entity\Url:
+    type: entity
+    repositoryClass: PG\ShortUrlBundle\Repository\Url
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: auto
+    fields:
+        long_url:
+            type: string
+            length: 4000
+            nullable: false
+        code:
+            type: string
+            length: 20
+            unique: true
+            nullable: false
+        active:
+            type: boolean
+            options:
+                default: 1
+        created_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
