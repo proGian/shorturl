@@ -1,36 +1,32 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>{% block main_title %}PG Url Shortener{% endblock %}</title>
+{% extends "base.html.twig" %}
 
-        {% block stylesheets %}
-            <link href="{{ asset("bundles/pgshorturl/css/main.css") }}" rel="stylesheet">
+
+{% block title %}PG Url Shortener{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("bundles/pgshorturl/css/main.css") }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <div class="main-wrapper">
+
+        {% block main_wrapper %}
+            <header class="main-header">
+                {% block main_header %}
+                {% endblock %}
+            </header>
+
+            <section class="main-content">
+                {% block main_content %}
+                {% endblock %}
+            </section>
+
+            <footer class="main-footer">
+                {% block main_footer %}
+                {% endblock %}
+            </footer>
         {% endblock %}
-    <head>
-    <body>
-
-        <div class="main-wrapper">
-
-            {% block main_wrapper %}
-                <header class="main-header">
-                    {% block main_header %}
-                    {% endblock %}
-                </header>
-
-                <section class="main-content">
-                    {% block main_content %}
-                    {% endblock %}
-                </section>
-
-                <footer class="main-footer">
-                    {% block main_footer %}
-                    {% endblock %}
-                </footer>
-            {% endblock %}
-        </div>
-    <body>
-</html>
+    </div>
+{% endblock %}
