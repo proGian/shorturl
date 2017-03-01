@@ -14,7 +14,7 @@ class ShortUrlController extends Controller {
     public function indexAction($urlcode) {
         
         /* @var $repository PG\ShortUrlBundle\Repository\Url */
-        $repository = $this->getDoctrine()->getEntityManager()->getRepository("PGShortUrlBundle:Url");
+        $repository = $this->getDoctrine()->getManager()->getRepository("PGShortUrlBundle:Url");
         
         $urlEntity = $repository->findOneBy([
             "code" => $urlcode,
