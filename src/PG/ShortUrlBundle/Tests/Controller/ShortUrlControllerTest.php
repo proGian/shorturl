@@ -25,6 +25,6 @@ class ShortUrlControllerTest extends WebTestCase {
          
          $client->request('GET', '/J213');
          
-         $this->assertEquals(301, $client->getResponse()->getStatusCode());              
+         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 }
