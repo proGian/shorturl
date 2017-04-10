@@ -16,8 +16,8 @@ class ShortUrlControllerTest extends WebTestCase {
          
          $crawler = $client->request('GET', '/unexistenturl');
          
-         $this->assertEquals(200, $client->getResponse()->getStatusCode());     
-         $this->assertContains('url not found', $crawler->filter('h1.url-not-found')->text());
+         $this->assertEquals(404, $client->getResponse()->getStatusCode());     
+         $this->assertContains('404', $crawler->filter('h1')->text());
     }
     
     public function testExistentUrl() {

@@ -3,30 +3,23 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
-gulp.task('copybootstrap', function () {
-//    // copy less
-    gulp.src(
-            [
-                './node_modules/bootstrap/less/**/*.*',
-                '!./node_modules/bootstrap/less/grid.less'
-            ])
-            .pipe(gulp.dest('./libs/bootstrap'));
+gulp.task('copygentelella', function () {
 
-    // compile less
-    gulp.src(['./node_modules/bootstrap/less/variables.less', './node_modules/bootstrap/less/mixins.less', './node_modules/bootstrap/less/grid.less'])
-            .pipe(plugins.concat('grid.less'))
-            .pipe(plugins.less())
-            .pipe(plugins.rename('grid.less'))
-            .pipe(gulp.dest('./libs/bootstrap'));
+    var g_folders = ['build', 'vendors'];
 
-//    // copy fonts
-    gulp.src(['./node_modules/bootstrap/fonts/*'])
-            .pipe(gulp.dest('./public/fonts'));
+    g_folders.forEach(function (folder) {
+        gulp.src(['./node_modules/gentelella/' + folder + '/**/*.*'])
+                .pipe(gulp.dest('./public/vendors/gentelella/' + folder));
+
+    });
 
 });
 
+
+
+
 gulp.task('build-dev', function () {
-    gulp.src(['./less/main.less'])
+    gulp.src(['./libs/gentelella/vendors/bootstrap/dist/css/bootstrap.css', './less/main.less'])
             .pipe(plugins.less())
             .pipe(plugins.rename('main.css'))
             .pipe(gulp.dest('./public/css'));
@@ -37,4 +30,4 @@ gulp.task('stylewatch', function () {
 });
 
 
-gulp.task('default', ['copybootstrap', 'build-dev', 'stylewatch']);
+gulp.task('default', ['copygentelella', 'build-dev', 'stylewatch']);

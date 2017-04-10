@@ -2,7 +2,10 @@
 
 namespace PG\ShortUrlBundle\Controller;
 
+use PG\ShortUrlBundle\Entity\Url;
+use PG\ShortUrlBundle\Repository\Url as Url2;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Description of ShortUrlController
@@ -13,7 +16,7 @@ class ShortUrlController extends Controller {
     
     public function indexAction($urlcode) {
         
-        /* @var $repository PG\ShortUrlBundle\Repository\Url */
+        /* @var $repository Url2 */
         $repository = $this->getDoctrine()->getManager()->getRepository("PGShortUrlBundle:Url");
         
         $urlEntity = $repository->findOneBy([
@@ -21,12 +24,16 @@ class ShortUrlController extends Controller {
             "active" => 1
         ]);
 
-        /* @var $urlEntity \PG\ShortUrlBundle\Entity\Url */
+        /* @var $urlEntity Url */
         if (null != $urlEntity) {
             return $this->redirect($urlEntity->getLongUrl(), 301);
         }
         
-        return $this->render('PGShortUrlBundle:ShortUrl:urlNotFound.html.twig');
+        
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        
+        return $this->render('PGShortUrlBundle:ShortUrl:urlNotFound.html.twig', [], $response);
     }
     
 }

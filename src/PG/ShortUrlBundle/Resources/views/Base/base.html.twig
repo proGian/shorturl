@@ -10,23 +10,20 @@
 
 
 {% block body %}
-    <div class="main-wrapper">
+    <div class="container body">
 
         {% block main_wrapper %}
-            <header class="main-header">
+
+            <div class="main_container">
                 {% block main_header %}
                 {% endblock %}
-            </header>
 
-            <section class="main-content">
                 {% block main_content %}
                 {% endblock %}
-            </section>
 
-            <footer class="main-footer">
                 {% block main_footer %}
                 {% endblock %}
-            </footer>
+            </div>
         {% endblock %}
     </div>
 {% endblock %}
